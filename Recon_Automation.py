@@ -13,10 +13,7 @@ for domain in open(input_file, "r"):
         cewl_output_file = f"{domain}_CeWL.txt"
         os.system(f"cewl {domain} -w {cewl_output_file}")
 
-        wordlist = input(f"Enter the location of the wordlist to use for subfinder with CeWL for {domain} (press enter to skip): ")
-        if os.path.isfile(wordlist):
-            subfinder_output_file = f"{domain}_subfinder_CeWL.txt"
-            os.system(f"subfinder -d {domain} -w {wordlist} -o {subfinder_output_file}")
+       
 
     use_harvester = input(f"Do you want to use theHarvester for {domain}? (y/n): ")
     if use_harvester.lower() == "y":
@@ -39,3 +36,6 @@ for domain in open(input_file, "r"):
         if os.path.isfile(wordlist):
             subfinder_output_file = f"{domain}_subfinder.txt"
             os.system(f"subfinder -d {domain} -w {wordlist} -o {subfinder_output_file}")
+        if os.path.isfile(cewl_output_file):
+            subfinder_output_file = f"{domain}_subfinder_CeWL.txt"
+            os.system(f"subfinder -d {domain} -w {cewl_output_file} -o {subfinder_output_file}")
